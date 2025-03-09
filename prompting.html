@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dwustopniowe promptowanie</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="site-navigation">
+                <a href="index.html" class="site-nav-link">← Powrót do strony głównej</a>
+                <a href="flask_gpt.html" class="site-nav-link">← Poprzedni tutorial: Aplikacja Webowa GPT z Flask</a>
+            </div>
+            
+            <h2>Spis treści</h2>
+            <ul>
+                <li><a href="#wstep">Wstęp</a></li>
+                <li><a href="#wymagania">Wymagania wstępne</a></li>
+                <li><a href="#krok1">1. Przygotowanie Meta-Promptu</a></li>
+                <li><a href="#krok2">2. Generowanie Zaawansowanego Promptu</a></li>
+                <li><a href="#krok3">3. Wykorzystanie Wygenerowanego Promptu</a></li>
+                <li><a href="#korzysci">Dlaczego warto stosować dwustopniowe promptowanie?</a></li>
+                <li><a href="#wskazowki">Praktyczne wskazówki</a></li>
+                <li><a href="#podsumowanie">Podsumowanie</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <header>
+                <h1>Dwustopniowe promptowanie</h1>
+                <p class="subtitle">Instrukcja stosowania techniki dwustopniowego promptowania dla uzyskiwania lepszych rezultatów z modelami AI</p>
+                <div class="author-info">
+                    <p><strong>Autor:</strong> Karim Sylla<br>
+                    <strong>Email:</strong> karim.sylla@gmail.com</p>
+                </div>
+            </header>
+            
+            <section id="wstep">
+                <h2>Wstęp</h2>
+                <p>Dwustopniowe promptowanie to technika wykorzystująca AI dwuetapowo: najpierw do stworzenia doskonałego promptu, a następnie użycia go do właściwego zadania. Ta metoda znacząco zwiększa jakość i precyzję rezultatów pracy z generatorami kodu.</p>
+            </section>
+            
+            <section id="wymagania">
+                <h2>Wymagania wstępne</h2>
+                <ul>
+                    <li>Dostęp do modelu AI (np. Claude, ChatGPT)</li>
+                    <li>Podstawowa wiedza o promptach</li>
+                    <li>Określony cel (np. stworzenie aplikacji)</li>
+                </ul>
+            </section>
+            
+            <section id="krok1" class="step">
+                <h2 data-number="1">Przygotowanie Prostego Promptu</h2>
+                <h3>Cel:</h3> 
+                <p>Sformułowanie wstępnego promptu, który wygeneruje zaawansowany prompt docelowy.</p>
+                
+                <h3>Instrukcja:</h3>
+                <p>Utwórz samodzielnie prosty, zwięzły prompt pierwszego poziomu, który będzie prosił AI o stworzenie skutecznego promptu drugiego poziomu. Na przykład:</p>
+                
+                <pre><code>Napisz prompt po polsku w strukturze # Role, # Task, # Output, # Rules, skierowany do modelu LLM, zawierający prośbę o wygenerowanie kodu aplikacji do zgłaszania pomysłów wśród pracowników, napisanej we Flasku. 
+Zastosuj dobre praktyki pisania promptów dla LLM. 
+Nie podawaj kodu aplikacji, a jedynie szczegółowy prompt, który precyzyjnie instruuje model w zakresie jego napisania. 
+W instrukcji uwzględnij wszystkie kluczowe aspekty UI i UX, pomijając szczegóły implementacyjne i techniczne, które LLM dobierze samodzielnie (z wyjątkiem określenia frameworka). 
+Prompt ma być zapisany w formacie .md - wewnątrz znaczników kodu.</code></pre>
+            </section>
+            
+            <section id="krok2" class="step">
+                <h2 data-number="2">Generowanie Zaawansowanego Promptu</h2>
+                <h3>Cel:</h3>
+                <p>Wykorzystanie AI do wygenerowania szczegółowego, dobrze ustrukturyzowanego promptu.</p>
+                
+                <h3>Instrukcja:</h3>
+                <p>Wprowadź początkowy prompt do AI i uzyskaj rozbudowany prompt zawierający:</p>
+                <ul>
+                    <li>Jasno określoną rolę dla AI</li>
+                    <li>Precyzyjne zadanie</li>
+                    <li>Strukturę oczekiwanego rezultatu</li>
+                    <li>Zasady i ograniczenia</li>
+                </ul>
+                
+                <h3>Przykład wygenerowanego promptu (Claude 3.7):</h3>
+                <pre><code># Rola
+Jesteś doświadczonym programistą full-stack specjalizującym się w tworzeniu aplikacji webowych w Pythonie, ze szczególnym uwzględnieniem frameworka Flask oraz nowoczesnych praktyk w zakresie UI/UX.
+
+# Zadanie
+Stwórz aplikację webową "IdeaBox" we frameworku Flask, która umożliwi pracownikom firmy zgłaszanie, ocenianie i komentowanie pomysłów usprawniających działanie organizacji.
+
+# Oczekiwany Output
+Kompletny kod źródłowy aplikacji "IdeaBox" napisanej w Pythonie z wykorzystaniem frameworka Flask, obejmujący:
+1. Strukturę projektu z odpowiednimi plikami i katalogami
+2. Szablony HTML z odpowiednim stylowaniem
+3. Logikę biznesową aplikacji
+4. Podstawowe zabezpieczenia
+5. Instrukcję uruchomienia aplikacji
+
+# Wymagania dotyczące UI/UX
+
+## Ogólne
+1. Aplikacja powinna mieć prosty, intuicyjny interfejs zgodny z zasadami Material Design
+2. Użyj stonowanej palety kolorów z akcentami w kolorze firmowym (niebieski #1a73e8)
+3. Zapewnij jasne komunikaty o sukcesie i błędach dla wszystkich akcji użytkownika
+
+## Strona główna
+1. Lista najnowszych pomysłów z możliwością sortowania (najnowsze, najpopularniejsze, w trakcie realizacji)
+2. Wyraźnie widoczny przycisk "Dodaj nowy pomysł"
+3. Panel boczny z kategoriami pomysłów i statusami
+4. Pasek wyszukiwania na górze strony
+
+## Formularz dodawania pomysłu
+1. Pola formularza: tytuł, opis, kategoria (z listy rozwijanej), tagi (opcjonalnie)
+2. Możliwość dodania załączników (maksymalnie 3)
+3. Podgląd przed wysłaniem
+4. Walidacja pól w czasie rzeczywistym
+
+## Strona szczegółów pomysłu
+1. Pełna treść pomysłu z informacjami o autorze i dacie utworzenia
+2. System oceniania (głosowanie w górę/w dół)
+3. Sekcja komentarzy z możliwością odpowiadania
+4. Status pomysłu (nowy, rozważany, zaakceptowany, odrzucony, wdrożony)
+5. Historia zmian statusu pomysłu
+
+## Panel użytkownika
+1. Lista własnych pomysłów
+2. Powiadomienia o komentarzach i zmianach statusu
+3. Podstawowe statystyki (liczba zgłoszonych pomysłów, suma otrzymanych głosów)
+4. Ustawienia profilu
+
+## Panel administratora
+1. Zarządzanie kategoriami pomysłów
+2. Zmiana statusów pomysłów
+3. Moderacja komentarzy
+4. Raportowanie (najpopularniejsze kategorie, aktywność użytkowników, stopa wdrożeń)
+
+# Zasady
+1. Kod powinien być zgodny z PEP 8 i zawierać odpowiednie komentarze
+2. Zadbaj o optymalizację wydajności aplikacji</code></pre>
+                
+                <p>Jak widać w powyższym przykładzie, wygenerowany prompt jest znacznie bardziej szczegółowy i ustrukturyzowany niż meta-prompt, który użyliśmy do jego stworzenia. Zawiera dokładne wytyczne dotyczące UI/UX, funkcjonalności i zasad technicznych, co znacząco zwiększy jakość kodu wygenerowanego na jego podstawie.</p>
+            </section>
+            
+            <section id="krok3" class="step">
+                <h2 data-number="3">Wykorzystanie Wygenerowanego Promptu</h2>
+                <h3>Cel:</h3>
+                <p>Użycie wygenerowanego promptu do uzyskania finalnego rezultatu.</p>
+                
+                <h3>Instrukcja:</h3>
+                <p>Wprowadź wygenerowany prompt do docelowego generatora kodu (np. GitHub Copilot). Na podstawie wygenerowanego promptu AI stworzy aplikację zgodną z wszystkimi wyspecyfikowanymi wymaganiami.</p>
+            </section>
+            
+            <section id="korzysci">
+                <h2>Dlaczego warto stosować dwustopniowe promptowanie?</h2>
+                
+                <h3>Korzyści</h3>
+                <ol>
+                    <li><strong>Precyzja</strong> - Generuje strukturę promptu bazującą na dobrych praktykach</li>
+                    <li><strong>Kompletność</strong> - Zapewnia uwzględnienie wszystkich istotnych aspektów zadania</li>
+                    <li><strong>Spójność</strong> - Tworzy prompt z jasno zdefiniowanymi oczekiwaniami</li>
+                    <li><strong>Oszczędność czasu</strong> - Eliminuje potrzebę ręcznego tworzenia złożonych promptów</li>
+                    <li><strong>Lepsze rezultaty</strong> - Końcowy kod jest wyższej jakości i lepiej spełnia wymagania</li>
+                </ol>
+                
+                <h3>Przewaga nad prostymi promptami</h3>
+                <p>Dwustopniowe promptowanie pozwala uniknąć wielu typowych problemów związanych z prostymi promptami:</p>
+                <ul>
+                    <li>Brak precyzji i pomijanie istotnych szczegółów</li>
+                    <li>Niekompletność lub nadmierna ogólność</li>
+                    <li>Brak struktury i spójności</li>
+                    <li>Słabe zrozumienie przez AI rzeczywistych potrzeb</li>
+                </ul>
+            </section>
+            
+            <section id="wskazowki">
+                <h2>Praktyczne wskazówki</h2>
+                <ol>
+                    <li>Zawsze określaj strukturę promptu, jakiej oczekujesz</li>
+                    <li>Definiuj kontekst i rolę dla AI</li>
+                    <li>Wyraźnie określaj format wyniku</li>
+                    <li>Podawaj konkretne przykłady, jeśli to możliwe</li>
+                    <li>Iteracyjnie udoskonalaj meta-prompty na podstawie otrzymanych wyników</li>
+                </ol>
+            </section>
+            
+            <section id="podsumowanie">
+                <h2>Podsumowanie</h2>
+                <p>Dwustopniowe promptowanie to wydajna technika, która pozwala wykorzystać AI do generowania optymalnych promptów, znacznie poprawiając jakość pracy z generatorami kodu. Ta dwuetapowa metoda oszczędza czas i prowadzi do lepszych, bardziej dostosowanych rezultatów niż tradycyjne, proste prompty.</p>
+            </section>
+        </main>
+    </div>
+    
+    <footer>
+        <p>© 2025 Karim Sylla. Wszystkie prawa zastrzeżone.</p>
+        <p class="footer-nav">
+            <a href="index.html">Strona główna</a> | 
+            <a href="flask_gpt.html">Poprzedni tutorial: Aplikacja Webowa GPT z Flask</a>
+        </p>
+    </footer>
+</body>
+</html>
