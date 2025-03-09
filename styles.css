@@ -1,0 +1,225 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+    flex: 1;
+}
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+}
+
+h1 {
+    margin-top: 0;
+    color: #ffffff;
+    font-size: 2.2rem;
+}
+
+.subtitle {
+    color: #e9ecef;
+    font-size: 1.2rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+.author-info {
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: #e9ecef;
+}
+
+nav {
+    background-color: #2c3e50;
+    color: white;
+    width: 250px;
+    min-width: 250px;
+    padding: 1.5rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+nav h2 {
+    color: #ffffff;
+    border-bottom: 1px solid #4a90e2;
+    padding-bottom: 0.8rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin-bottom: 0.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #e9ecef;
+    font-weight: 500;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+nav a:hover {
+    background-color: #4a90e2;
+    color: white;
+    text-decoration: none;
+}
+
+/* New site navigation styles */
+.site-navigation {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #4a90e2;
+}
+
+.site-nav-link {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.7rem 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    color: #ffffff;
+    background-color: rgba(74, 144, 226, 0.2);
+    transition: all 0.25s ease;
+}
+
+.site-nav-link:hover {
+    background-color: rgba(74, 144, 226, 0.5);
+    transform: translateX(3px);
+}
+
+/* Remove the old tutorial-navigation class since we no longer use it */
+.tutorial-navigation {
+    display: none;
+}
+
+main {
+    flex: 1;
+    padding: 1rem 2rem;
+    max-width: 100%;
+}
+
+.step {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.step h2 {
+    color: #0066cc;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.step h2::before {
+    content: attr(data-number) ". ";
+    font-weight: bold;
+    color: #4a90e2;
+}
+
+.note {
+    background-color: #e6f7ff;
+    border-left: 4px solid #1890ff;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 5px 5px 0;
+}
+
+code {
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    background-color: #f1f1f1;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 90%;
+}
+
+pre {
+    background-color: #f1f1f1;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    line-height: 1.4;
+}
+
+.terminal {
+    background-color: #2c3e50;
+    color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    line-height: 1.4;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.example {
+    background-color: #f0f9eb;
+    padding: 1rem;
+    border-left: 4px solid #5cb85c;
+    margin: 1rem 0;
+    border-radius: 0 5px 5px 0;
+}
+
+footer {
+    margin-top: 3rem;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+    background-color: #f8f9fa;
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        max-width: 95%;
+    }
+    
+    nav {
+        width: 100%;
+        height: auto;
+        position: static;
+    }
+    
+    main {
+        padding: 1rem;
+    }
+}

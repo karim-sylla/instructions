@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikacja Webowa GPT z Flask</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="site-navigation">
+                <a href="index.html" class="site-nav-link">← Powrót do strony głównej</a>
+                <a href="terminal_gpt.html" class="site-nav-link">← Poprzedni tutorial: OpenAI API w konsoli</a>
+            </div>
+            
+            <h2>Spis treści</h2>
+            <ul>
+                <li><a href="#wstep">Wstęp</a></li>
+                <li><a href="#wymagania">Wymagania wstępne</a></li>
+                <li><a href="#krok1">1. Utworzenie folderu projektu</a></li>
+                <li><a href="#krok2">2. Plik requirements.txt (rozszerzony)</a></li>
+                <li><a href="#krok3">3. Plik .env (bez zmian)</a></li>
+                <li><a href="#krok4">4. Konfiguracja i aktywacja środowiska</a></li>
+                <li><a href="#krok5">5. Instalacja pakietów</a></li>
+                <li><a href="#krok6">6. Generowanie aplikacji z pomocą GitHub Copilot</a></li>
+                <li><a href="#krok7">7. Weryfikacja struktury i uruchomienie aplikacji</a></li>
+                <li><a href="#slownik">Słowniczek pojęć</a></li>
+                <li><a href="#komendy">Podsumowanie komend</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <header>
+                <h1>Aplikacja Webowa GPT z Flask</h1>
+                <p class="subtitle">Instrukcja tworzenia webowej aplikacji z interfejsem graficznym wykorzystującej API OpenAI</p>
+                <div class="author-info">
+                    <p><strong>Autor:</strong> Karim Sylla<br>
+                    <strong>Email:</strong> karim.sylla@gmail.com</p>
+                </div>
+            </header>
+            
+            <section id="wstep">
+                <h2>Wstęp</h2>
+                <p>Ta instrukcja przeprowadzi Cię przez proces tworzenia bardziej zaawansowanej aplikacji, będącej rozszerzeniem poprzedniego przykładu. Zamiast prostej aplikacji konsolowej, stworzymy <strong>aplikację webową Flask</strong> z graficznym interfejsem użytkownika dostępnym przez przeglądarkę. Rozwiązanie to oferuje znacznie więcej możliwości, takich jak dostosowywanie parametrów modelu, wybór formatów odpowiedzi i personalizację wiadomości systemowych.</p>
+                
+                <div class="note">
+                    <p><strong>Uwaga dla tych, którzy wykonali poprzednią instrukcję:</strong> Proces konfiguracji środowiska jest bardzo podobny do tego z aplikacji konsolowej. Większość zmian dotyczy struktury projektu i samego kodu aplikacji. Jeśli rozumiesz już podstawy tworzenia środowiska Python, ten projekt będzie naturalnym rozszerzeniem Twoich umiejętności.</p>
+                </div>
+            </section>
+            
+            <section id="wymagania">
+                <h2>Wymagania wstępne</h2>
+                <p>Wymagania są identyczne jak w przypadku poprzedniej instrukcji:</p>
+                <ul>
+                    <li>Visual Studio Code (VS Code)</li>
+                    <li>Python</li>
+                    <li>Klucz API OpenAI</li>
+                    <li>GitHub Copilot lub dostęp do modelu GPT, który można wykorzystać do generowania kodu (np. ChatGPT)</li>
+                </ul>
+            </section>
+            
+            <section id="krok1" class="step">
+                <h2 data-number="1">Utworzenie folderu projektu</h2>
+                <h3>Cel:</h3> 
+                <p>Utworzenie dedykowanego folderu na pliki projektu.</p>
+                
+                <h3>Instrukcja:</h3>
+                <p>Podobnie jak w poprzednim przykładzie, utwórz nowy folder dla projektu (np. "flask_gpt") i otwórz go w VS Code. Ten proces został szczegółowo wyjaśniony w pierwszej instrukcji.</p>
+            </section>
+            
+            <section id="krok2" class="step">
+                <h2 data-number="2">Plik requirements.txt (rozszerzony)</h2>
+                <h3>Cel:</h3>
+                <p>Stworzenie pliku z rozszerzoną listą zależności dla aplikacji webowej.</p>
+                
+                <h3>Instrukcja:</h3>
+                <ol>
+                    <li>Utwórz plik "requirements.txt" podobnie jak w poprzedniej instrukcji.</li>
+                    <li>W pliku wpisz następujące linie:</li>
+                </ol>
+                
+                <pre><code>flask
+requests
+python-dotenv
+tiktoken</code></pre>
+                
+                <li>Zapisz plik (Ctrl+S).</li>
+                
+                <h3>Co nowego:</h3>
+                <p>W tym przypadku używamy tych samych bibliotek co poprzednio, ale będziemy ich używać inaczej:</p>
+                <ul>
+                    <li><code>flask</code>: Teraz będzie służyć do tworzenia pełnoprawnej aplikacji webowej, a nie tylko prostego skryptu</li>
+                    <li><code>tiktoken</code>: Tym razem wykorzystamy ją do śledzenia liczby tokenów, aby monitorować użycie API</li>
+                </ul>
+            </section>
+            
+            <section id="krok3" class="step">
+                <h2 data-number="3">Plik .env (bez zmian)</h2>
+                <h3>Cel:</h3>
+                <p>Utworzenie pliku zawierającego klucz API OpenAI, który nie będzie przechowywany bezpośrednio w kodzie.</p>
+                
+                <h3>Instrukcja:</h3>
+                <p>Plik .env tworzymy identycznie jak w poprzedniej instrukcji. Umieść w nim swój klucz API OpenAI:</p>
+                
+                <pre><code>OPENAI_API_KEY=twoj_klucz_api</code></pre>
+                
+                <p>Zastosowanie tego pliku jest takie samo jak poprzednio - chroni Twój klucz API przed bezpośrednim umieszczeniem w kodzie źródłowym.</p>
+            </section>
+            
+            <section id="krok4" class="step">
+                <h2 data-number="4">Konfiguracja i aktywacja środowiska</h2>
+                <h3>Cel:</h3>
+                <p>Skonfigurowanie i aktywacja wirtualnego środowiska Python.</p>
+                
+                <h3>Instrukcja:</h3>
+                <ol>
+                    <li>Utwórz i aktywuj wirtualne środowisko tak samo jak w poprzednim przykładzie:</li>
+                </ol>
+                
+                <pre class="terminal">python -m venv venv
+.\venv\Scripts\Activate</pre>
+                
+                <li>Po aktywacji na początku linii w terminalu powinien pojawić się prefix "(venv)".</li>
+                
+                <h3>Przypomnienie:</h3>
+                <p>Ten proces jest identyczny jak w poprzedniej instrukcji. Wirtualne środowisko oddziela zależności tego projektu od innych projektów Python na Twoim komputerze. Jest to szczególnie ważne w aplikacjach Flask, które często wymagają konkretnych wersji bibliotek.</p>
+            </section>
+            
+            <section id="krok5" class="step">
+                <h2 data-number="5">Instalacja pakietów</h2>
+                <h3>Cel:</h3>
+                <p>Zainstalowanie wymaganych bibliotek.</p>
+                
+                <h3>Instrukcja:</h3>
+                <ol>
+                    <li>Upewnij się, że wirtualne środowisko jest aktywne (widoczny prefix "(venv)").</li>
+                    <li>Zainstaluj biblioteki używając tej samej komendy co poprzednio:</li>
+                </ol>
+                
+                <pre class="terminal">pip install -r requirements.txt</pre>
+                
+                <h3>Wyjaśnienie:</h3>
+                <p>Proces instalacji jest taki sam jak w poprzedniej instrukcji, jednak w tym przypadku będziemy wykorzystywać więcej funkcjonalności tych bibliotek do budowy aplikacji webowej.</p>
+            </section>
+            
+            <section id="krok6" class="step">
+                <h2 data-number="6">Generowanie aplikacji z pomocą GitHub Copilot</h2>
+                <h3>Cel:</h3>
+                <p>Wykorzystanie GitHub Copilot do wygenerowania aplikacji webowej.</p>
+                
+                <h3>Instrukcja:</h3>
+                <ol>
+                    <li>Utwórz nowy plik <code>app.py</code> w głównym folderze projektu.</li>
+                    <li>W pliku <code>app.py</code> wprowadź następujący prompt dla GitHub Copilot:</li>
+                </ol>
+                
+                <pre><code># Prompt dla GitHub Copilot
+
+Stwórz kompletną aplikację Flask do interakcji z modelami OpenAI przez przeglądarkę. Aplikacja powinna:
+
+1. Mieć interfejs graficzny z dwoma głównymi sekcjami: panel boczny z ustawieniami i główny obszar do wprowadzania pytań.
+2. Pozwalać na wybór modelu OpenAI (gpt-4o-mini, gpt-4o) i dostosowanie parametrów generowania odpowiedzi (temperatura, liczba tokenów, itp.)
+3. Pozwalać użytkownikowi na wprowadzenie wiadomości systemowej dla modelu.
+4. Wyświetlać odpowiedzi modelu oraz informacje o liczbie użytych tokenów.
+5. Umożliwiać wybór między zwykłą odpowiedzią tekstową a odpowiedzią w formacie JSON.
+6. Obsługiwać błędy i zawierać zabezpieczenia.
+
+Pobieraj klucz API z pliku .env, używając bibliotek wymienionych w requirements.txt. Utwórz niezbędną strukturę folderów, w tym 'templates' i 'static'.</code></pre>
+                
+                <li>Pozwól GitHub Copilot dokończyć kod i stworzyć wszystkie niezbędne pliki.</li>
+                
+                <h3>Co powinieneś otrzymać:</h3>
+                <p>GitHub Copilot powinien stworzyć kompletną aplikację, zawierającą:</p>
+                <ol>
+                    <li>Plik <code>app.py</code> z pełną logiką aplikacji</li>
+                    <li>Niezbędną strukturę folderów (templates, static)</li>
+                    <li>Wszystkie wymagane pliki szablonów HTML oraz zasoby CSS/JavaScript</li>
+                </ol>
+                
+                <p>Wygenerowany kod powinien być gotowy do uruchomienia, możesz jednak potrzebować dokonać drobnych poprawek zależnie od twoich potrzeb.</p>
+            </section>
+            
+            <section id="krok7" class="step">
+                <h2 data-number="7">Weryfikacja struktury i uruchomienie aplikacji</h2>
+                <h3>Cel:</h3>
+                <p>Sprawdzenie wygenerowanej struktury projektu i uruchomienie aplikacji.</p>
+                
+                <h3>Instrukcja:</h3>
+                <ol>
+                    <li>Po wygenerowaniu kodu przez GitHub Copilot, sprawdź utworzoną strukturę projektu:</li>
+                    <ul>
+                        <li>Upewnij się, że został utworzony folder <code>templates</code> zawierający pliki HTML</li>
+                        <li>Sprawdź, czy został utworzony folder <code>static</code> do przechowywania plików CSS i JavaScript</li>
+                        <li>Jeśli któryś z tych folderów nie został utworzony, utwórz go ręcznie</li>
+                    </ul>
+                    
+                    <li>Upewnij się, że wirtualne środowisko jest aktywne.</li>
+                    
+                    <li>Uruchom aplikację Flask komendą:</li>
+                </ol>
+                
+                <pre class="terminal">python app.py</pre>
+                
+                <p>4. Po uruchomieniu, w terminalu powinieneś zobaczyć komunikat podobny do:</p>
+                
+                <pre class="terminal">* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</pre>
+                
+                <p>5. Otwórz przeglądarkę i przejdź pod adres http://127.0.0.1:5000/</p>
+                
+                <h3>Testowanie aplikacji:</h3>
+                <ol>
+                    <li>Wypróbuj interfejs, wprowadzając różne pytania i zmieniając parametry modelu.</li>
+                    <li>Przetestuj różne formaty odpowiedzi, jeśli są dostępne.</li>
+                    <li>Sprawdź, czy wyświetlane są statystyki tokenów po otrzymaniu odpowiedzi.</li>
+                </ol>
+                
+                <h3>Przykładowe pytania testowe:</h3>
+                <ul>
+                    <li>"Wytłumacz czym jest framework Flask w kilku punktach."</li>
+                    <li>"Jakie są główne różnice między modelami gpt-4o-mini a gpt-4o?"</li>
+                    <li>"Wymień 5 przykładowych zastosowań API OpenAI w e-commerce."</li>
+                </ul>
+            </section>
+            
+            <section id="slownik">
+                <h2>Słowniczek pojęć</h2>
+                <p>W tej aplikacji pojawiają się zarówno pojęcia znane z poprzedniej instrukcji, jak i nowe terminy:</p>
+                
+                <dl>
+                    <dt><strong>Flask</strong></dt>
+                    <dd>Framework webowy w Pythonie do tworzenia aplikacji internetowych.</dd>
+                    
+                    <dt><strong>Template/Szablon</strong></dt>
+                    <dd>Plik HTML z dynamicznymi elementami, które są wypełniane danymi przez Flask.</dd>
+                    
+                    <dt><strong>Route/Trasa</strong></dt>
+                    <dd>Zdefiniowany adres URL obsługiwany przez aplikację Flask.</dd>
+                    
+                    <dt><strong>Endpoint</strong></dt>
+                    <dd>Punkt końcowy API, pod którym dostępna jest określona funkcjonalność.</dd>
+                    
+                    <dt><strong>AJAX/Fetch</strong></dt>
+                    <dd>Technologie JavaScript do asynchronicznego pobierania danych bez przeładowywania strony.</dd>
+                    
+                    <dt><strong>JSON Schema</strong></dt>
+                    <dd>Struktura definiująca format danych JSON, którą model GPT ma wypełnić.</dd>
+                    
+                    <dt><strong>GitHub Copilot</strong></dt>
+                    <dd>Narzędzie AI do generowania kodu na podstawie opisów lub kontekstu.</dd>
+                </dl>
+            </section>
+            
+            <section id="komendy">
+                <h2>Podsumowanie komend terminalowych</h2>
+                <pre class="terminal"># Utworzenie wirtualnego środowiska
+python -m venv venv
+
+# Aktywacja wirtualnego środowiska
+.\venv\Scripts\Activate
+
+# Instalacja wymaganych pakietów
+pip install -r requirements.txt
+
+# Uruchomienie aplikacji
+python app.py</pre>
+            </section>
+        </main>
+    </div>
+    
+    <footer>
+        <p>© 2025 Karim Sylla. Wszystkie prawa zastrzeżone.</p>
+        <p>Instrukcja przeznaczona do umieszczenia na GitHub Pages.</p>
+        <p class="footer-nav">
+            <a href="index.html">Strona główna</a> | 
+            <a href="terminal_gpt.html">Poprzedni tutorial: OpenAI API w konsoli</a>
+        </p>
+    </footer>
+</body>
+</html>

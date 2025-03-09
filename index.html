@@ -3,517 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instalacja Pythona i OpenAI API w VS Code</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-        header {
-            background-color: #1e1e1e;
-            color: white;
-            padding: 1rem;
-            margin-bottom: 2rem;
-            border-radius: 5px;
-        }
-        h1 {
-            margin-top: 0;
-        }
-        .author-info {
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-        nav {
-            background-color: #f4f4f4;
-            padding: 1rem;
-            margin-bottom: 2rem;
-            border-radius: 5px;
-            position: sticky;
-            top: 0;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        nav li {
-            margin-right: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        nav a {
-            text-decoration: none;
-            color: #0066cc;
-            font-weight: 500;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .step {
-            margin-bottom: 2rem;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #fff;
-        }
-        .step h2 {
-            color: #0066cc;
-            margin-top: 0;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.5rem;
-        }
-        .note {
-            background-color: #e6f7ff;
-            border-left: 4px solid #1890ff;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 0 5px 5px 0;
-        }
-        code {
-            font-family: Consolas, Monaco, 'Andale Mono', monospace;
-            background-color: #f8f8f8;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
-            font-size: 90%;
-        }
-        pre {
-            background-color: #f8f8f8;
-            padding: 1rem;
-            border-radius: 5px;
-            overflow-x: auto;
-            line-height: 1.4;
-        }
-        .terminal {
-            background-color: #1e1e1e;
-            color: #ddd;
-            padding: 1rem;
-            border-radius: 5px;
-            overflow-x: auto;
-            line-height: 1.4;
-        }
-        .example {
-            background-color: #f6f8fa;
-            padding: 1rem;
-            border-left: 4px solid #6cb52d;
-            margin: 1rem 0;
-            border-radius: 0 5px 5px 0;
-        }
-        footer {
-            margin-top: 3rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #777;
-        }
-        @media (max-width: 600px) {
-            nav ul {
-                flex-direction: column;
-            }
-            nav li {
-                margin-bottom: 0.5rem;
-            }
-        }
-    </style>
+    <title>Kursy OpenAI API z Python</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Instrukcja konfiguracji i uruchomienia aplikacji konsolowej z OpenAI API w Visual Studio Code</h1>
-        <div class="author-info">
-            <p><strong>Autor:</strong> Karim Sylla<br>
-            <strong>Email:</strong> karim.sylla@gmail.com</p>
-        </div>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="#wstep">Wstęp</a></li>
-            <li><a href="#wymagania">Wymagania wstępne</a></li>
-            <li><a href="#krok1">Krok 1: Utworzenie folderu</a></li>
-            <li><a href="#krok2">Krok 2: Otwarcie w VS Code</a></li>
-            <li><a href="#krok3">Krok 3: Plik requirements.txt</a></li>
-            <li><a href="#krok4">Krok 4: Plik .env</a></li>
-            <li><a href="#krok5">Krok 5: Konfiguracja venv</a></li>
-            <li><a href="#krok6">Krok 6: Aktywacja venv</a></li>
-            <li><a href="#krok7">Krok 7: Instalacja pakietów</a></li>
-            <li><a href="#krok8">Krok 8: Plik aplikacji</a></li>
-            <li><a href="#krok9">Krok 9: Uruchomienie</a></li>
-            <li><a href="#slownik">Słowniczek pojęć</a></li>
-            <li><a href="#komendy">Podsumowanie komend</a></li>
-        </ul>
-    </nav>
-    
-    <main>
-        <section id="wstep">
-            <h2>Wstęp</h2>
-            <p>Ta instrukcja przeprowadzi Cię przez proces tworzenia i uruchamiania aplikacji konsolowej Python, która korzysta z API OpenAI (GPT). Instrukcja jest przeznaczona dla osób początkujących, które po raz pierwszy korzystają z Visual Studio Code i języka Python na systemie Windows.</p>
+    <div class="container">
+        <main>
+            <header>
+                <h1>Kursy OpenAI API z Python</h1>
+                <p class="subtitle">Praktyczne tutoriale wykorzystania API OpenAI w aplikacjach Python</p>
+                <div class="author-info">
+                    <p><strong>Autor:</strong> Karim Sylla<br>
+                    <strong>Email:</strong> karim.sylla@gmail.com</p>
+                </div>
+            </header>
             
-            <div class="note">
-                <p><strong>Zachęta dla początkujących:</strong> Proces konfiguracji środowiska może na pierwszy rzut oka wydawać się skomplikowany, ale w rzeczywistości to tylko kilka prostych komend, które wyglądają tak samo przy każdym nowym projekcie Python. Gdy już poznasz te kroki, ustawienie środowiska będzie zajmować nie dłużej niż kilkanaście sekund. Te podstawowe umiejętności będą przydatne w każdym projekcie Python w przyszłości!</p>
-            </div>
-            
-            <div class="note">
-                <p><strong>Ważna informacja:</strong> Kroki 1-7 dotyczą "jednorazowej" konfiguracji środowiska projektu. Przy kolejnych projektach będziesz powtarzać te same kroki, ale stanie się to szybką rutyną. Kroki 8-9 są częścią właściwego procesu programowania, gdzie będziesz tworzyć i rozwijać swoją aplikację.</p>
-            </div>
-        </section>
-        
-        <section id="wymagania">
-            <h2>Wymagania wstępne</h2>
-            <p>Przed rozpoczęciem upewnij się, że masz zainstalowane:</p>
-            <ul>
-                <li>Visual Studio Code (VS Code): <a href="https://code.visualstudio.com/download" target="_blank">https://code.visualstudio.com/download</a></li>
-                <li>Python: <a href="https://www.python.org/downloads/" target="_blank">https://www.python.org/downloads/</a></li>
-                <li>Klucz API OpenAI: <a href="https://platform.openai.com/api-keys" target="_blank">https://platform.openai.com/api-keys</a></li>
-            </ul>
-        </section>
-        
-        <section id="krok1" class="step">
-            <h2>Krok 1: Utworzenie folderu projektu</h2>
-            <h3>Cel:</h3> 
-            <p>Utworzenie dedykowanego folderu na pliki projektu.</p>
-            
-            <h3>Instrukcja:</h3>
-            <ol>
-                <li>Otwórz Eksplorator plików Windows (naciśnij klawisz Windows + E).</li>
-                <li>Przejdź do lokalizacji, gdzie chcesz utworzyć folder projektu (np. Dokumenty).</li>
-                <li>Kliknij prawym przyciskiem myszy w pustym miejscu i wybierz "Nowy" > "Folder".</li>
-                <li>Nazwij folder (np. "gpt_terminal").</li>
-            </ol>
-            
-            <h3>Wyjaśnienie:</h3> 
-            <p>Dobrą praktyką jest tworzenie osobnego folderu dla każdego projektu, aby utrzymać porządek i łatwiej zarządzać plikami.</p>
-        </section>
-        
-        <section id="krok2" class="step">
-            <h2>Krok 2: Otwarcie projektu w Visual Studio Code</h2>
-            <h3>Cel:</h3> 
-            <p>Otwarcie utworzonego folderu w edytorze VS Code.</p>
-            
-            <h3>Instrukcja:</h3>
-            <ol>
-                <li>Otwórz Visual Studio Code.</li>
-                <li>Kliknij "File" (Plik) > "Open Folder..." (Otwórz folder...) lub użyj skrótu Ctrl+K Ctrl+O.</li>
-                <li>Przejdź do utworzonego wcześniej folderu projektu i kliknij "Wybierz folder".</li>
-            </ol>
-            
-            <h3>Wskazówki nawigacyjne:</h3> 
-            <p>Po otwarciu folderu zobaczysz jego nazwę w lewym panelu eksploratora (jeśli panel nie jest widoczny, kliknij ikonę plików w lewym pasku bocznym lub użyj skrótu Ctrl+Shift+E).</p>
-            
-            <h3>Wyjaśnienie:</h3> 
-            <p>VS Code to edytor kodu, który oferuje wiele narzędzi pomocnych w programowaniu, w tym podświetlanie składni, autouzupełnianie i debugowanie.</p>
-        </section>
-        
-        <section id="krok3" class="step">
-            <h2>Krok 3: Utworzenie pliku requirements.txt</h2>
-            <h3>Cel:</h3> 
-            <p>Stworzenie pliku z listą zależności (bibliotek), których wymaga nasza aplikacja.</p>
-            
-            <h3>Instrukcja:</h3>
-            <ol>
-                <li>W VS Code kliknij prawym przyciskiem myszy na folder projektu w panelu eksploratora.</li>
-                <li>Wybierz "New File" (Nowy plik).</li>
-                <li>Nazwij plik "requirements.txt".</li>
-                <li>W pliku wpisz następujące linie:</li>
-            </ol>
-            
-            <pre><code>requests
-python-dotenv</code></pre>
-            
-            <li>Zapisz plik za pomocą Ctrl+S.</li>
-            
-            <h3>Wyjaśnienie:</h3> 
-            <p>Plik requirements.txt zawiera listę bibliotek Python, które są wymagane przez naszą aplikację. <code>requests</code> to biblioteka do wykonywania zapytań HTTP, a <code>python-dotenv</code> pozwala na ładowanie zmiennych środowiskowych z pliku .env.</p>
-        </section>
-        
-        <section id="krok4" class="step">
-            <h2>Krok 4: Utworzenie pliku .env</h2>
-            <h3>Cel:</h3> 
-            <p>Utworzenie pliku zawierającego klucz API OpenAI, który nie będzie przechowywany bezpośrednio w kodzie.</p>
-            
-            <h3>Instrukcja:</h3>
-            <ol>
-                <li>W VS Code kliknij prawym przyciskiem myszy na folder projektu w panelu eksploratora.</li>
-                <li>Wybierz "New File" (Nowy plik).</li>
-                <li>Nazwij plik ".env" (z kropką na początku).</li>
-                <li>W pliku wpisz:</li>
-            </ol>
-            
-            <pre><code>OPENAI_API_KEY=twoj_klucz_api</code></pre>
-            
-            <p>Zastąp "twoj_klucz_api" rzeczywistym kluczem API OpenAI.</p>
-            <li>Zapisz plik za pomocą Ctrl+S.</li>
-            
-            <h3>Wyjaśnienie:</h3> 
-            <p>Plik .env przechowuje wrażliwe dane, takie jak klucze API, które nie powinny być udostępniane ani przechowywane w repozytorium kodu. Biblioteka python-dotenv umożliwia odczytanie tych zmiennych przez aplikację.</p>
-        </section>
-        
-        <section id="krok5" class="step">
-            <h2>Krok 5: Konfiguracja wirtualnego środowiska (venv)</h2>
-            <h3>Cel:</h3> 
-            <p>Utworzenie izolowanego środowiska dla projektu, co zapobiega konfliktom z innymi projektami Python.</p>
-            
-            <h3>Instrukcja:</h3>
-            <ol>
-                <li>Otwórz terminal w VS Code, klikając "Terminal" > "New Terminal" w górnym menu lub użyj skrótu Ctrl+` (gravis, klawisz pod Esc).</li>
-                <li>W terminalu wpisz komendę:</li>
-            </ol>
-            
-            <pre class="terminal">python -m venv venv</pre>
-            
-            <li>Poczekaj, aż proces się zakończy (może to zająć kilka sekund).</li>
-            
-            <h3>Wskazówki nawigacyjne:</h3> 
-            <p>Terminal otwiera się w dolnej części okna VS Code. Upewnij się, że ścieżka w terminalu wskazuje na folder Twojego projektu.</p>
-            
-            <h3>Wyjaśnienie:</h3> 
-            <p>Wirtualne środowisko (venv) to izolowana kopia Pythona z własnymi zainstalowanymi pakietami. Dzięki temu każdy projekt może mieć swoje specyficzne wersje bibliotek, niezależnie od innych projektów.</p>
-        </section>
-        
-        <section id="krok6" class="step">
-            <h2>Krok 6: Aktywacja wirtualnego środowiska</h2>
-            <h3>Cel:</h3> 
-            <p>Włączenie utworzonego wirtualnego środowiska, aby móc korzystać z zainstalowanych w nim pakietów.</p>
-            
-            <h3>Instrukcja:</h3>
-            <ol>
-                <li>W terminalu VS Code wpisz komendę:</li>
-            </ol>
-            
-            <pre class="terminal">.\venv\Scripts\Activate</pre>
-            
-            <li>Po aktywacji zauważysz, że na początku linii w terminalu pojawi się "(venv)", co oznacza, że środowisko wirtualne jest aktywne.</li>
-            
-            <h3>Jak sprawdzić, czy środowisko jest aktywne:</h3>
-            <ol>
-                <li>Na początku linii w terminalu powinien pojawić się prefix "(venv)" - to najszybszy sposób weryfikacji.</li>
-            </ol>
-            <p><strong>Przykład linii bez aktywnego środowiska:</strong></p>
-            <pre class="terminal">PS C:\Users\Użytkownik\Documents\TerminalGPT></pre>
-            
-            <p><strong>Przykład linii z aktywnym środowiskiem:</strong></p>
-            <pre class="terminal">(venv) PS C:\Users\Użytkownik\Documents\TerminalGPT></pre>
-            
-            <ol start="2">
-                <li>Możesz również sprawdzić, czy używasz Pythona z wirtualnego środowiska wpisując:</li>
-            </ol>
-            <pre class="terminal">where python</pre>
-            <p>Pierwszy wynik powinien wskazywać ścieżkę zawierającą folder "venv".</p>
-            
-            <ol start="3">
-                <li>Jeśli środowisko nie jest aktywne, powtórz krok aktywacji środowiska.</li>
-                <li>Jeśli pojawi się błąd podczas aktywacji, spróbuj uruchomić:</li>
-            </ol>
-            <pre class="terminal">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</pre>
-            <p>a następnie ponownie użyj komendy aktywacyjnej.</p>
-            
-            <h3>Wyjaśnienie:</h3> 
-            <p>Aktywacja venv sprawia, że wszystkie komendy Python są wykonywane w kontekście tego środowiska. Pakiety instalowane podczas aktywnego venv będą dostępne tylko w tym środowisku.</p>
-        </section>
-        
-        <section id="krok7" class="step">
-            <h2>Krok 7: Instalacja wymaganych pakietów</h2>
-            <h3>Cel:</h3> 
-            <p>Zainstalowanie bibliotek wymaganych przez naszą aplikację.</p>
-            
-            <h3>Instrukcja:</h3>
-            <ol>
-                <li>Upewnij się, że wirtualne środowisko jest aktywne (widzisz "(venv)" na początku linii w terminalu).</li>
-                <li>W terminalu wpisz:</li>
-            </ol>
-            
-            <pre class="terminal">pip install -r requirements.txt</pre>
-            
-            <li>Poczekaj, aż wszystkie pakiety zostaną zainstalowane.</li>
-            
-            <h3>Wyjaśnienie:</h3> 
-            <p>Komenda <code>pip install -r requirements.txt</code> pobiera i instaluje wszystkie biblioteki wymienione w pliku requirements.txt.</p>
-        </section>
-        
-        <section id="krok8" class="step">
-            <h2>Krok 8: Utworzenie głównego pliku aplikacji</h2>
-            <h3>Cel:</h3> 
-            <p>Stworzenie pliku Python zawierającego kod naszej aplikacji.</p>
-            
-            <h3>Ważna informacja:</h3>
-            <p>Poniższy kod jest przykładowy i służy do przetestowania działania API OpenAI oraz nauki konfiguracji środowiska programistycznego. W rzeczywistych projektach będziesz pracować z bardziej rozbudowanym kodem. Ten kod przykładowy możesz również wygenerować przy pomocy narzędzi AI, takich jak ChatGPT lub GitHub Copilot wbudowany w VS Code - pod warunkiem, że Twoje środowisko programistyczne jest już poprawnie skonfigurowane i gotowe do pracy.</p>
-            
-            <h3>Instrukcja:</h3>
-            <ol>
-                <li>W VS Code kliknij prawym przyciskiem myszy na folder projektu w panelu eksploratora.</li>
-                <li>Wybierz "New File" (Nowy plik).</li>
-                <li>Nazwij plik "app.py" lub inną nazwą z rozszerzeniem .py.</li>
-                <li>Wklej w pliku następujący kod:</li>
-            </ol>
-            
-            <pre><code>import requests
-import os
-from dotenv import load_dotenv
-
-def zapytaj_gpt(pytanie):
-    # Wczytanie klucza API
-    load_dotenv()
-    api_key = os.getenv('OPENAI_API_KEY')
-    
-    # Konfiguracja zapytania
-    url = "https://api.openai.com/v1/chat/completions"
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {api_key}"
-    }
-    dane = {
-        "model": "gpt-4o-mini",
-        "messages": [
-            {"role": "system", "content": "Odpowiedz na pytanie użytkownika"},
-            {"role": "user", "content": pytanie}
-        ],
-        "temperature": 0.7,
-        "max_tokens": 1000  # Maksymalna liczba tokenów w odpowiedzi
-    }
-    try:
-        odpowiedz = requests.post(url, headers=headers, json=dane)
-        if odpowiedz.status_code == 200:
-            print("Odpowiedź:", odpowiedz.json()['choices'][0]['message']['content'])
-        else:
-            print(f"Błąd: {odpowiedz.status_code} - {odpowiedz.text}")
-    except Exception as e:
-        print(f"Wystąpił błąd: {e}")
-
-if __name__ == "__main__":
-    print("Witaj w terminalu GPT! Wpisz 'exit' aby zakończyć.")
-    
-    while True:
-        pytanie = input("\nTwoje pytanie: ")
-        
-        if pytanie.lower() == 'exit':
-            print("Do widzenia!")
-            break
-        
-        if pytanie.strip():
-            zapytaj_gpt(pytanie)
-        else:
-            print("Proszę wpisać pytanie.")</code></pre>
-            
-            <li>Zapisz plik za pomocą Ctrl+S.</li>
-            
-            <h3>Wyjaśnienie:</h3> 
-            <p>Plik app.py zawiera kod naszej aplikacji konsolowej. Aplikacja pozwala na wprowadzanie pytań, wysyła je do API OpenAI i wyświetla odpowiedzi. Program działa w pętli nieskończonej, dopóki użytkownik nie wpisze "exit".</p>
-        </section>
-        
-        <section id="krok9" class="step">
-            <h2>Krok 9: Uruchomienie aplikacji</h2>
-            <h3>Cel:</h3> 
-            <p>Uruchomienie aplikacji i przetestowanie jej działania.</p>
-            
-            <h3>Instrukcja:</h3>
-            <ol>
-                <li>Upewnij się, że wirtualne środowisko jest aktywne (widzisz "(venv)" na początku linii w terminalu).</li>
-                <li>W terminalu wpisz:</li>
-            </ol>
-            
-            <pre class="terminal">python app.py</pre>
-            
-            <p>(jeśli nazwałeś plik inaczej niż app.py, użyj odpowiedniej nazwy)</p>
-            
-            <ol start="3">
-                <li>Po uruchomieniu aplikacji, w terminalu pojawi się powitanie "Witaj w terminalu GPT! Wpisz 'exit' aby zakończyć."</li>
-                <li>Wpisz dowolne pytanie i naciśnij Enter, aby otrzymać odpowiedź od GPT.</li>
-                <li>Aby zakończyć działanie aplikacji, wpisz "exit" i naciśnij Enter.</li>
-            </ol>
-            
-            <h3>Przykładowa sesja w terminalu:</h3>
-            <pre class="terminal">Witaj w terminalu GPT! Wpisz 'exit' aby zakończyć.
-
-Twoje pytanie: Co to jest Python?
-Odpowiedź: Python to wysokopoziomowy, interpretowany język programowania ogólnego przeznaczenia. Został stworzony przez Guido van Rossuma i po raz pierwszy wydany w 1991 roku. Python kładzie duży nacisk na czytelność kodu i jego przejrzystość, wykorzystując znaczące wcięcia w składni.
-
-Python obsługuje wiele paradygmatów programowania, w tym programowanie obiektowe, imperatywne, funkcyjne i proceduralne. Posiada dynamiczny system typów i automatyczne zarządzanie pamięcią poprzez garbage collection.
-
-Python jest często używany do tworzenia aplikacji webowych, automatyzacji zadań, analizy danych i uczenia maszynowego. Jego popularność wynika z prostoty, łatwości nauki oraz bogatego ekosystemu bibliotek i narzędzi.
-
-Twoje pytanie: Jak długo uczy się programowania?
-Odpowiedź: Czas nauki programowania zależy od wielu czynników, takich jak:
-
-1. Twoje wcześniejsze doświadczenie z technologią i komputerami
-2. Ilość czasu, który możesz poświęcić na naukę dziennie/tygodniowo
-3. Wybrany język programowania i jego złożoność
-4. Twoje cele (np. tworzenie prostych skryptów vs zaawansowane aplikacje)
-5. Sposób nauki (samodzielnie, kursy, studia, mentoring)
-
-Ogólnie rzecz biorąc:
-- Podstawy programowania można opanować w ciągu 3-6 miesięcy regularnej nauki
-- Osiągnięcie poziomu junior developera zwykle zajmuje 6-12 miesięcy intensywnej pracy
-- Zostanie doświadczonym programistą to proces trwający kilka lat
-
-Warto pamiętać, że programowanie to dziedzina, w której nigdy nie przestaje się uczyć. Nawet doświadczeni programiści stale poszerzają swoją wiedzę o nowe technologie i podejścia.
-
-Twoje pytanie: exit
-Do widzenia!</pre>
-            
-            <h3>Wskazówki nawigacyjne:</h3> 
-            <p>Jeśli występują błędy, zostaną wyświetlone w terminalu. Zwróć szczególną uwagę na komunikaty o braku bibliotek lub problemach z kluczem API.</p>
-            
-            <h3>Wyjaśnienie:</h3> 
-            <p>Uruchomienie aplikacji rozpoczyna interaktywną sesję w terminalu, gdzie możesz zadawać pytania modelowi GPT i otrzymywać odpowiedzi w czasie rzeczywistym.</p>
-        </section>
-        
-        <section id="slownik">
-            <h2>Słowniczek podstawowych pojęć</h2>
-            <dl>
-                <dt><strong>Visual Studio Code (VS Code)</strong></dt>
-                <dd>Darmowy, otwartoźródłowy edytor kodu opracowany przez Microsoft, obsługujący wiele języków programowania.</dd>
+            <section id="dostepne-tutoriale">
+                <h2>Dostępne tutoriale</h2>
                 
-                <dt><strong>Python</strong></dt>
-                <dd>Język programowania wysokiego poziomu, często używany do tworzenia aplikacji, analizy danych i sztucznej inteligencji.</dd>
+                <div class="tutorial-card">
+                    <h3><a href="terminal_gpt.html">1. OpenAI API w konsoli terminala</a></h3>
+                    <h4>Czego się nauczysz:</h4>
+                    <ul>
+                        <li>Konfiguracji środowiska Python i zarządzania zależnościami</li>
+                        <li>Bezpiecznego przechowywania kluczy API</li>
+                        <li>Tworzenia prostej aplikacji konsolowej komunikującej się z modelami GPT</li>
+                        <li>Obsługi zapytań i odpowiedzi przez API OpenAI</li>
+                        <li>Implementacji interaktywnego interfejsu terminalowego</li>
+                    </ul>
+                    <a href="terminal_gpt.html" class="tutorial-button">Przejdź do tutoriala</a>
+                </div>
                 
-                <dt><strong>Terminal/Konsola</strong></dt>
-                <dd>Interfejs tekstowy do wprowadzania komend.</dd>
+                <div class="tutorial-card">
+                    <h3><a href="flask_gpt.html">2. Aplikacja webowa Flask z OpenAI API</a></h3>
+                    <h4>Czego się nauczysz:</h4>
+                    <ul>
+                        <li>Tworzenia aplikacji webowej Flask z graficznym interfejsem</li>
+                        <li>Dostosowywania parametrów modeli GPT przez panel konfiguracyjny</li>
+                        <li>Generowania kompletnego kodu aplikacji przy pomocy GitHub Copilot</li>
+                        <li>Personalizacji zachowania modeli GPT i formatu odpowiedzi</li>
+                        <li>Śledzenia zużycia tokenów w komunikacji z API</li>
+                    </ul>
+                    <a href="flask_gpt.html" class="tutorial-button">Przejdź do tutoriala</a>
+                </div>
+            </section>
+            
+            <section id="wymagania">
+                <h2>Wymagania wstępne</h2>
+                <ul>
+                    <li><strong>Visual Studio Code</strong> - do edycji kodu i zarządzania projektem</li>
+                    <li><strong>Python</strong> - w wersji 3.8 lub nowszej</li>
+                    <li><strong>Klucz API OpenAI</strong> - dostępny po rejestracji na platformie OpenAI</li>
+                    <li><strong>GitHub Copilot</strong> lub dostęp do ChatGPT - do generowania fragmentów kodu</li>
+                </ul>
                 
-                <dt><strong>API (Application Programming Interface)</strong></dt>
-                <dd>Zestaw reguł i protokołów pozwalających na komunikację między różnymi aplikacjami.</dd>
+                <div class="note">
+                    <p><strong>Informacja:</strong> Szczegółowe instrukcje dotyczące instalacji wymaganych narzędzi znajdziesz w poszczególnych tutorialach.</p>
+                </div>
+            </section>
+            
+            <section id="zawartosc">
+                <h2>Zawartość tutoriali</h2>
+                <ul>
+                    <li><strong>Instrukcje krok po kroku z wyjaśnieniami</strong> - każdy etap jest dokładnie opisany</li>
+                    <li><strong>Podsumowanie komend terminalowych</strong> - szybki dostęp do najważniejszych poleceń</li>
+                    <li><strong>Słowniczek technicznych terminów</strong> - wyjaśnienie pojęć używanych w tutorialach</li>
+                </ul>
                 
-                <dt><strong>OpenAI API</strong></dt>
-                <dd>Interfejs umożliwiający dostęp do modeli językowych OpenAI, takich jak GPT.</dd>
-                
-                <dt><strong>venv (Virtual Environment)</strong></dt>
-                <dd>Izolowane środowisko dla projektów Python, pozwalające na niezależne zarządzanie pakietami.</dd>
-                
-                <dt><strong>pip</strong></dt>
-                <dd>System zarządzania pakietami dla języka Python, używany do instalowania i aktualizowania bibliotek.</dd>
-                
-                <dt><strong>requirements.txt</strong></dt>
-                <dd>Plik zawierający listę wymaganych bibliotek Python dla projektu.</dd>
-                
-                <dt><strong>.env</strong></dt>
-                <dd>Plik przechowujący zmienne środowiskowe, takie jak klucze API, które nie powinny być umieszczane bezpośrednio w kodzie.</dd>
-                
-                <dt><strong>JSON (JavaScript Object Notation)</strong></dt>
-                <dd>Format danych używany do wymiany informacji między aplikacjami.</dd>
-            </dl>
-        </section>
-        
-        <section id="komendy">
-            <h2>Podsumowanie komend terminalowych</h2>
-            <pre class="terminal"># Utworzenie wirtualnego środowiska
-python -m venv venv
-
-# Aktywacja wirtualnego środowiska
-.\venv\Scripts\Activate
-
-# Instalacja wymaganych pakietów
-pip install -r requirements.txt
-
-# Uruchomienie aplikacji
-python app.py</pre>
-        </section>
-    </main>
+                <div class="note">
+                    <p><strong>Poziom trudności:</strong> Tutoriale są przeznaczone dla osób początkujących, które stawiają pierwsze kroki w pracy z API OpenAI i językiem Python. Jednocześnie zawierają zaawansowane koncepcje, które mogą zainteresować również doświadczonych programistów.</p>
+                </div>
+            </section>
+        </main>
+    </div>
     
     <footer>
         <p>© 2025 Karim Sylla. Wszystkie prawa zastrzeżone.</p>
-        <p>Instrukcja przeznaczona do umieszczenia na GitHub Pages.</p>
+        <p>Instrukcje przeznaczone do umieszczenia na GitHub Pages.</p>
     </footer>
 </body>
 </html>
